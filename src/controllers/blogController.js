@@ -177,7 +177,7 @@ const deleteByQueryParam = async function (req, res) {
     try {
 
         let data = req.query
-        let { authorId, category, tags, subCategory, isPublished } = data
+        let { authorId, category, tags, subCategory } = data
 
 
         if (!isValid(authorId)) {
@@ -201,8 +201,8 @@ const deleteByQueryParam = async function (req, res) {
         }
 
 
-        let authorDetails = await authorModel.find({ _id: authorId, isDeleted: false, isPublished: true })
-        if (!authorDetails) {
+        let Details = await blogModel.find({ authorId: authorId, isDeleted: false, isPublished: true })
+        if (!Details) {
             res.status(404).send({ status: false, msg: "details not exist" })
         } else {
 
